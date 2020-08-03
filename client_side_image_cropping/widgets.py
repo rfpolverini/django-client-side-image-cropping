@@ -19,6 +19,7 @@ class ClientsideCroppingWidget(Widget):
                  format: str = "jpeg",
                  quality: int = 85,
                  file_name: typing.Optional[str] = None,
+                 template: typing.Optional[str] = "client-side_cropping_widget.html",
                  *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -45,6 +46,7 @@ class ClientsideCroppingWidget(Widget):
         }
         self.clearable = clearable
         self.file_name = file_name
+        self.template_name = template
 
 
     def get_context(self, name, value, attrs):
@@ -94,3 +96,8 @@ class ClientsideCroppingWidget(Widget):
         )
         inmem_file.original_uploaded_data = data[name]
         return inmem_file
+
+    def render(self, name, value, attrs=None, renderer=None):
+        """Render the widget as an HTML string."""
+        context = self.get_context(name, value, attrs)
+        return self._render(self.template_name, context, renderer)

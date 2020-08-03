@@ -1,0 +1,31 @@
+{% load i18n %}
+<style>
+    .dcsic_wrapper .dcsic_choose_img { display: -webkit-inline-box !important; }
+    .dcsic_wrapper .dcsic_choose_other_img { display: -webkit-inline-box !important; }
+</style>
+<div class="col-md-1 col-1 col-sm-0"> </div>
+
+<div class="col-md-10 col-10 col-sm-12  ">
+        <div class=" dcsic_wrapper{% if current_img_url %} has_image{% endif %}" data-res-width="{{ widget.res_width }}" data-res-height="{{ widget.res_height }}" data-res-format="{{ widget.res_format }}" data-res-quality="{{ widget.res_quality }}">
+            <input type="hidden" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}{% if original_uploaded_data %} value="{{ original_uploaded_data }}"{% endif %}>
+            <img src="{{ current_img_url }}" class="m-2 mb-6 dcsic_current_img container-fluid no-padding "  />
+            <label>
+                {% if current_img_url %}
+                <span class="dcsic_choose_other_img m-2 p-2">{% trans "Choose other image" %}</span>
+                {% else %}
+                <span class="dcsic_choose_img m-2 p-2">{% trans "Choose image" %}</span>
+                {% endif %}
+                <input type="file" class="dcsic_file_input" accept="image/*"/>
+            </label>
+            {% if input_clearable %}<span class="dcsic_delete_image m-2 p-2" style="display:-webkit-inline-box">{% trans "Delete image" %}</span>{% endif %}
+        </div>
+
+        <div class="dcsic_overlay"><div class="dcsic_dialog">
+            <div class="dcsic_croppie_container"></div>
+            <div class="dcsic_buttons">
+                <div><div class="dcsic_left"><span class="dcsic_icon">↺</span> {% trans "Rotate left" %}</div><div class="dcsic_right"><span class="dcsic_icon">↻</span> {% trans "Rotate right" %}</div></div>
+                <div><div class="dcsic_cancel">{% trans "Cancel." %}</div><div class="dcsic_ok">{% trans "OK" %}</div></div>
+            </div>
+        </div></div>
+</div>
+<div class="col-md-1 col-1 col-sm-0"> </div>
