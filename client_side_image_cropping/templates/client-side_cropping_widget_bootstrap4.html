@@ -11,7 +11,7 @@
 <div class="col-md-10 col-12  ">
         <div class=" dcsic_wrapper{% if current_img_url %} has_image{% endif %}" data-res-width="{{ widget.res_width }}" data-res-height="{{ widget.res_height }}" data-res-format="{{ widget.res_format }}" data-res-quality="{{ widget.res_quality }}">
             <input type="hidden" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}{% if original_uploaded_data %} value="{{ original_uploaded_data }}"{% endif %}>
-            <img src="{{ current_img_url }}" class="m-2 mb-6 dcsic_current_img container-fluid no-padding mh-50" />
+            <img src="{{ current_img_url }}" class="dcsic_current_img container-fluid no-padding" />
             <label>
                 {% if current_img_url %}
                 <span class="dcsic_choose_other_img m-2 p-2">{% trans "Choose other image" %}</span>
